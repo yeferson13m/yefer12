@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brote – Plantas y objetos para el hogar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#eef3ee;--surface:#fff;--ink:#16302a;--muted:#55695f;--line:#d3ddd3;
+  --brand:#1f5c4a;--brand-ink:#fff;--accent:#e8a92c;--danger:#b3412f;
+  --font-d:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --font-b:"DM Sans","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0f1a17;--surface:#172622;--ink:#e6efe9;--muted:#9bb0a5;--line:#2a3d37;--brand:#5fc3a0;--brand-ink:#0b1713;--accent:#f0b84a;--danger:#ef8a76}
+}
+:root[data-theme="dark"]{--bg:#0f1a17;--surface:#172622;--ink:#e6efe9;--muted:#9bb0a5;--line:#2a3d37;--brand:#5fc3a0;--brand-ink:#0b1713;--accent:#f0b84a;--danger:#ef8a76}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font-b)}
+img,svg{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.logo{font:800 1.5rem var(--font-d);letter-spacing:-.02em;text-decoration:none}
+nav a{margin-right:18px;text-decoration:none;color:var(--muted);font-weight:500}
+nav a:hover{color:var(--ink)}
+.cartbtn{display:flex;align-items:center;gap:8px;background:var(--brand);color:var(--brand-ink);border:0;border-radius:999px;padding:10px 18px;font:700 .95rem var(--font-b);cursor:pointer}
+.cartbtn .n{background:var(--accent);color:#16302a;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-size:.8rem}
+.hero{padding:56px 0 40px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font:800 clamp(2.4rem,6vw,4.4rem)/1 var(--font-d);letter-spacing:-.035em;margin:0 0 18px}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:46ch;margin:0 0 26px}
+.btn{display:inline-block;background:var(--brand);color:var(--brand-ink);border:0;border-radius:12px;padding:13px 22px;font:700 1rem var(--font-b);text-decoration:none;cursor:pointer}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--line);margin-left:8px}
+.shelf{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.shelf div{aspect-ratio:3/4;border-radius:18px;display:grid;place-items:center;font-size:3.2rem}
+.shelf div:nth-child(2){transform:translateY(24px)}
+.perks{display:flex;flex-wrap:wrap;gap:12px 28px;padding:18px 0;border-block:1px solid var(--line);color:var(--muted);font-size:.95rem}
+.perks b{color:var(--ink)}
+section.cat{padding:48px 0}
+.head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:24px}
+.head h2{font:800 2rem var(--font-d);letter-spacing:-.02em;margin:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 16px;font:500 .92rem var(--font-b);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.search{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:10px 14px;font:1rem var(--font-b);width:100%;max-width:260px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.pic{aspect-ratio:1/1;display:grid;place-items:center;font-size:4.6rem;position:relative}
+.tag{position:absolute;top:12px;left:12px;background:var(--accent);color:#16302a;font:700 .78rem var(--font-b);padding:3px 10px;border-radius:999px}
+.info{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.info h3{font:700 1.08rem var(--font-d);margin:0}
+.info p{margin:0;color:var(--muted);font-size:.92rem;flex:1}
+.row{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.price{font:800 1.25rem var(--font-d)}
+.price s{font:400 .85rem var(--font-b);color:var(--muted);margin-left:6px}
+.add{background:var(--brand);color:var(--brand-ink);border:0;border-radius:10px;padding:9px 14px;font:700 .9rem var(--font-b);cursor:pointer}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
+.about{background:var(--brand);color:var(--brand-ink);border-radius:24px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:48px}
+.about h2{font:800 2rem var(--font-d);margin:0 0 10px;letter-spacing:-.02em}
+.about p{margin:0;opacity:.9}
+.about form{display:flex;flex-direction:column;gap:10px}
+.about input{border:0;border-radius:10px;padding:12px 14px;font:1rem var(--font-b)}
+.about .btn{background:var(--accent);color:#16302a}
+.msg{min-height:1.4em;font-size:.92rem}
+footer{border-top:1px solid var(--line);padding:28px 0 36px;color:var(--muted);font-size:.9rem}
+/* carrito */
+.veil{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}
+.veil.on{opacity:1;pointer-events:auto}
+aside.drawer{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:var(--surface);z-index:50;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+aside.drawer.on{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}
+.dh h2{font:800 1.3rem var(--font-d);margin:0}
+.x{background:none;border:0;color:var(--ink);font-size:1.6rem;cursor:pointer;line-height:1}
+.items{flex:1;overflow:auto;padding:8px 20px}
+.it{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.it .e{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;font-size:1.7rem}
+.it b{display:block;font-size:.95rem}
+.qty{display:flex;align-items:center;gap:8px;margin-top:4px}
+.qty button{width:26px;height:26px;border-radius:8px;border:1.5px solid var(--line);background:none;color:var(--ink);cursor:pointer}
+.rm{background:none;border:0;color:var(--danger);cursor:pointer;font-size:.85rem}
+.df{padding:18px 20px;border-top:1px solid var(--line)}
+.tot{display:flex;justify-content:space-between;font:800 1.25rem var(--font-d);margin-bottom:12px}
+.df .btn{width:100%}
+.df .btn[disabled]{opacity:.5;cursor:not-allowed}
+@media (max-width:760px){
+  .hero,.about{grid-template-columns:1fr}
+  .shelf{order:-1}
+  nav{display:none}
+  .about{padding:28px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <a class="logo" href="#inicio">Brote</a>
+    <nav><a href="#catalogo">Catálogo</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a></nav>
+    <button class="cartbtn" id="open" aria-label="Abrir carrito">Carrito <span class="n" id="count">0</span></button>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="wrap hero">
+    <div>
+      <h1>Plantas y objetos que hacen del hogar un lugar vivo</h1>
+      <p>Seleccionamos plantas resistentes, macetas de cerámica y accesorios de cuidado para que tu casa se sienta mejor desde la primera semana.</p>
+      <a class="btn" href="#catalogo">Ver catálogo</a><a class="btn alt" href="#nosotros">Conocer la tienda</a>
+    </div>
+    <div class="shelf" aria-hidden="true">
+      <div style="background:#cfe3d2">🌿</div><div style="background:#f3dcaa">🪴</div><div style="background:#c9dbe6">🌵</div>
+    </div>
+  </div>
+  <div class="wrap perks">
+    <span><b>Envío gratis</b> en compras desde $60</span>
+    <span><b>Garantía de 30 días</b> en todas las plantas</span>
+    <span><b>Guía de cuidados</b> incluida con cada pedido</span>
+  </div>
+
+  <section class="cat" id="catalogo">
+    <div class="wrap">
+      <div class="head">
+        <h2>Catálogo</h2>
+        <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría"></div>
+        <input class="search" id="q" type="search" placeholder="Buscar producto" aria-label="Buscar producto">
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <div class="wrap" id="nosotros">
+    <div class="about" id="contacto">
+      <div>
+        <h2>Recibe novedades y ofertas</h2>
+        <p>Escríbenos tu correo y te avisamos cuando lleguen plantas nuevas o haya descuentos. Sin spam.</p>
+      </div>
+      <form id="news">
+        <input type="email" id="mail" placeholder="tucorreo@ejemplo.com" required aria-label="Correo electrónico">
+        <button class="btn" type="submit">Suscribirme</button>
+        <div class="msg" id="nmsg" role="status"></div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<footer><div class="wrap">© 2026 Brote. Todos los derechos reservados. Atención de lunes a sábado, de 9:00 a 18:00.</div></footer>
+
+<div class="veil" id="veil"></div>
+<aside class="drawer" id="drawer" aria-label="Carrito de compras" aria-hidden="true">
+  <div class="dh"><h2>Tu carrito</h2><button class="x" id="close" aria-label="Cerrar carrito">×</button></div>
+  <div class="items" id="items"></div>
+  <div class="df">
+    <div class="tot"><span>Total</span><span id="total">$0.00</span></div>
+    <button class="btn" id="buy" disabled>Finalizar compra</button>
+    <div class="msg" id="bmsg" role="status" style="margin-top:8px"></div>
+  </div>
+</aside>
+
+<script>
+// Edita esta lista para cambiar los productos de la tienda.
+const PRODUCTS=[
+ {id:1,name:"Monstera deliciosa",cat:"Plantas",price:38,old:45,emoji:"🌿",bg:"#cfe3d2",desc:"Hojas grandes y perforadas. Luz indirecta, riego semanal."},
+ {id:2,name:"Cactus mixto (set de 3)",cat:"Plantas",price:24,emoji:"🌵",bg:"#e6dcb8",desc:"Tres cactus pequeños que casi no piden cuidados."},
+ {id:3,name:"Sansevieria",cat:"Plantas",price:29,emoji:"🪴",bg:"#cfe3d2",desc:"Resistente y purificadora. Perfecta para principiantes."},
+ {id:4,name:"Helecho de Boston",cat:"Plantas",price:22,emoji:"🍃",bg:"#c5dfc9",desc:"Follaje suave y abundante. Le gusta la humedad."},
+ {id:5,name:"Maceta de cerámica blanca",cat:"Macetas",price:18,emoji:"⚪",bg:"#e4e8ec",desc:"Acabado mate, 15 cm, con plato y drenaje."},
+ {id:6,name:"Maceta esmaltada azul",cat:"Macetas",price:26,old:32,emoji:"🔵",bg:"#c9dbe6",desc:"Esmalte brillante hecho a mano, 18 cm."},
+ {id:7,name:"Soporte de madera",cat:"Macetas",price:34,emoji:"🪵",bg:"#ecd7b3",desc:"Base de pino para macetas de hasta 20 cm."},
+ {id:8,name:"Regadera de cobre",cat:"Accesorios",price:27,emoji:"🚿",bg:"#f1d4b8",desc:"Pico largo para regar con precisión. 1,2 litros."},
+ {id:9,name:"Sustrato premium 5 L",cat:"Accesorios",price:12,emoji:"🟤",bg:"#e0cdb9",desc:"Mezcla aireada para plantas de interior."},
+ {id:10,name:"Kit de herramientas",cat:"Accesorios",price:21,emoji:"✂️",bg:"#d9d9e6",desc:"Tijera, pala y rastrillo de acero inoxidable."}
+];
+const money=n=>"$"+n.toFixed(2);
+let cart={},cat="Todos",term="";
+try{const s=localStorage.getItem("brote-cart");if(s)cart=JSON.parse(s)||{}}catch(e){}
+const save=()=>{try{localStorage.setItem("brote-cart",JSON.stringify(cart))}catch(e){}};
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function filters(){
+  const cats=["Todos",...new Set(PRODUCTS.map(p=>p.cat))];
+  $("filters").innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${c===cat}" data-c="${c}">${c}</button>`).join("");
+}
+function grid(){
+  const list=PRODUCTS.filter(p=>(cat==="Todos"||p.cat===cat)&&p.name.toLowerCase().includes(term));
+  $("grid").innerHTML=list.length?list.map(p=>`
+    <article class="card">
+      <div class="pic" style="background:${p.bg}">${p.old?'<span class="tag">Oferta</span>':''}<span aria-hidden="true">${p.emoji}</span></div>
+      <div class="info"><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p>
+        <div class="row"><span class="price">${money(p.price)}${p.old?`<s>${money(p.old)}</s>`:""}</span>
+        <button class="add" data-add="${p.id}">Agregar</button></div></div>
+    </article>`).join(""):`<p class="empty">No encontramos productos con esa búsqueda. Prueba con otra palabra o elige “Todos”.</p>`;
+}
+function renderCart(){
+  const ids=Object.keys(cart).filter(id=>PRODUCTS.some(p=>p.id==id));
+  let total=0,count=0;
+  $("items").innerHTML=ids.length?ids.map(id=>{
+    const p=PRODUCTS.find(x=>x.id==id),q=cart[id];total+=p.price*q;count+=q;
+    return `<div class="it"><div class="e" style="background:${p.bg}">${p.emoji}</div>
+      <div><b>${esc(p.name)}</b><div class="qty"><button data-dec="${id}" aria-label="Quitar uno">−</button><span>${q}</span><button data-inc="${id}" aria-label="Agregar uno">+</button></div></div>
+      <div style="text-align:right"><b>${money(p.price*q)}</b><br><button class="rm" data-rm="${id}">Quitar</button></div></div>`}).join(""):`<p class="empty">Tu carrito está vacío. Agrega un producto del catálogo.</p>`;
+  $("total").textContent=money(total);$("count").textContent=count;$("buy").disabled=!ids.length;
+  save();
+}
+function open(on){
+  $("drawer").classList.toggle("on",on);$("veil").classList.toggle("on",on);
+  $("drawer").setAttribute("aria-hidden",!on);
+  if(on)$("close").focus();else $("open").focus();
+}
+document.addEventListener("click",e=>{
+  const t=e.target;
+  if(t.dataset.c){cat=t.dataset.c;filters();grid()}
+  if(t.dataset.add){cart[t.dataset.add]=(cart[t.dataset.add]||0)+1;renderCart();$("bmsg").textContent="";t.textContent="Agregado ✓";setTimeout(()=>t.textContent="Agregar",900)}
+  if(t.dataset.inc){cart[t.dataset.inc]++;renderCart()}
+  if(t.dataset.dec){if(--cart[t.dataset.dec]<=0)delete cart[t.dataset.dec];renderCart()}
+  if(t.dataset.rm){delete cart[t.dataset.rm];renderCart()}
+});
+$("q").addEventListener("input",e=>{term=e.target.value.trim().toLowerCase();grid()});
+$("open").onclick=()=>open(true);$("close").onclick=()=>open(false);$("veil").onclick=()=>open(false);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")open(false)});
+$("buy").onclick=()=>{cart={};renderCart();$("bmsg").textContent="¡Gracias por tu compra! Te enviaremos la confirmación por correo."};
+$("news").onsubmit=e=>{e.preventDefault();$("nmsg").textContent="Listo, te suscribimos. Revisa tu bandeja de entrada.";$("mail").value=""};
+filters();grid();renderCart();
+</script>
+</body>
+</html>
